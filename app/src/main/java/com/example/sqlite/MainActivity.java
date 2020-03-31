@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Curso curso = new Curso();
                 DeveloperDB.getInstance(MainActivity.this).buscarCurso(curso,editTextCodigo.getText().toString());
-                editTextCurso.getText().toString();
-                editTextCarrera.getText().toString();
+                editTextCurso.setText(curso.getCurso());
+                editTextCarrera.setText(curso.getCarrera());
             }
         });
 

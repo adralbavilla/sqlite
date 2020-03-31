@@ -104,7 +104,7 @@ public class DeveloperDB extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         if(db != null){
             try{
-                SQLiteStatement update = db.compileStatement("UPDATE CURSOS SET CURSO=?, CARRERAR=? WHERE CODIGO=?");
+                SQLiteStatement update = db.compileStatement("UPDATE CURSOS SET CURSO=?, CARRERA=? WHERE CODIGO=?");
 
                 update.bindString(1, curso);
                 update.bindString(2, carrera);
