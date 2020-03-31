@@ -13,16 +13,16 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 public class DeveloperDB extends SQLiteOpenHelper {
-    private Context context;
+    private static Context context;
     private static final String NAME_DB = "developers.db";
     private static final int VERSION_DB = 1;
     private static final String TABLA_CURSOS = "CREATE TABLE CURSOS(CODIGO TEXT PRIMARY KEY, CURSO TEXT, CARRERA TEXT)";
 
     public DeveloperDB(@Nullable Context context) {
         super(context, NAME_DB, null, VERSION_DB);
-    }
-    public DeveloperDB getInstance(@Nullable Context context) {
         this.context = context;
+    }
+    public static DeveloperDB getInstance(@Nullable Context context) {
         return new DeveloperDB(context);
     }
 

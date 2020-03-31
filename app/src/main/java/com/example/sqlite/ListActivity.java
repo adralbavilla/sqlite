@@ -4,14 +4,15 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import static android.widget.LinearLayout.VERTICAL;
 
 public class ListActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-    DeveloperDB developerDB;
+    CursoAdapter cursoAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -20,7 +21,9 @@ public class ListActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        developerDB = new DeveloperDB(this);
-        recyclerView.setAdapter(new CursoAdapter(developerDB.mostrarCurso()));
+        cursoAdapter = new CursoAdapter(DeveloperDB.getInstance(this).mostrarCurso());
+        recyclerView.setAdapter(cursoAdapter);
+        DividerItemDecoration decoration = new DividerItemDecoration(this, VERTICAL);
+        recyclerView.addItemDecoration(decoration);
     }
 }

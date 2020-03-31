@@ -13,8 +13,7 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
 
     EditText editTextCodigo, editTextCurso, editTextCarrera;
-    Button btnAgregar, btnEditar, btnEliminar, btnModificar,btnBuscar;
-    DeveloperDB developerDB;
+    Button btnAgregar, btnEditar, btnEliminar, btnMostrar,btnBuscar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,16 +26,18 @@ public class MainActivity extends AppCompatActivity {
         btnAgregar = findViewById(R.id.btnAgregar);
         btnEditar = findViewById(R.id.btnEditar);
         btnBuscar = findViewById(R.id.btnBuscar);
-        developerDB.getInstance(this);
+        btnEliminar = findViewById(R.id.btnEliminar);
+        btnMostrar = findViewById(R.id.btnMostrar);
+        //developerDB.getInstance(this);
 
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                developerDB.agregarCursos(editTextCodigo.getText().toString(), editTextCurso.getText().toString(), editTextCarrera.getText().toString());
+                DeveloperDB.getInstance(MainActivity.this).agregarCursos(editTextCodigo.getText().toString(), editTextCurso.getText().toString(), editTextCarrera.getText().toString());
             }
         });
 
-        btnEditar.setOnClickListener(new View.OnClickListener() {
+        btnMostrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent mostrar = new Intent(MainActivity.this, ListActivity.class);
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Curso curso = new Curso();
-                developerDB.buscarCurso(curso,editTextCodigo.getText().toString());
+                DeveloperDB.getInstance(MainActivity.this).buscarCurso(curso,editTextCodigo.getText().toString());
                 editTextCurso.getText().toString();
                 editTextCarrera.getText().toString();
             }
@@ -57,14 +58,14 @@ public class MainActivity extends AppCompatActivity {
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                developerDB.actualizarCurso(editTextCodigo.getText().toString(), editTextCurso.getText().toString(), editTextCarrera.getText().toString());
+                DeveloperDB.getInstance(MainActivity.this).actualizarCurso(editTextCodigo.getText().toString(), editTextCurso.getText().toString(), editTextCarrera.getText().toString());
             }
         });
 
         btnEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                developerDB.eliminarCurso(editTextCodigo.getText().toString());
+                DeveloperDB.getInstance(MainActivity.this).eliminarCurso(editTextCodigo.getText().toString());
             }
         });
 
